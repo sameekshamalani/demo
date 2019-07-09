@@ -1,0 +1,123 @@
+{
+  "pageContext": {},
+  "actionOnLoad": [
+    
+    "@actions.loadArray"
+    
+  ],
+  "jslib": {
+    "isSaveDisable": "function(pageContext){ return (typeof pageContext !== undefined ) && ( pageContext.name == '' || typeof pageContext.name === 'undefined')}"
+   
+  },
+  "header": {
+    "children": [
+      {
+        "buttonType": "primary",
+        "actionOnClick": [
+          
+          "@actions.pushArray"
+          
+        ],
+        "disabled": "@jslib.isSaveDisable",
+        "id": "submit",
+        "type": "button",
+        "title": "Save"
+      },
+      {
+        "icon": "@iconlib.Close",
+        "actionOnClick": [
+          "@actions.closePanel1",
+          "@actions.clearPageContext"
+        ],
+        "id": "close",
+        "type": "buttonIcon"
+      }
+    ],
+    "title": "Add New"
+  },
+  "body": {
+    "children": [
+      {
+        "children": [
+          {
+            "isRequired": true,
+            "id": "enterName",
+            "label": "Name",
+            "placeholder": "Enter name",
+            "type": "input",
+            "value": "@pageContext.name"
+          
+          },
+          {
+            
+            "id": "names",
+            "label": "Name List",
+            "placeholder": "name list",
+            "type": "textarea",
+            "value": "@pageContext.arr"
+          
+          }
+          
+        ],
+        "label": "General Information",
+        "id": "generalInformationSection",
+        "type": "section"
+      }
+    ]
+  },
+  "actions": [
+    {
+      "isAsync": true,
+      "name": "projectQuery",
+      "outputVarMap": {
+        "data": "@pageContext.projectInfo"
+      },
+      "type": "query",
+      "actionDef": {
+        "models": [
+          "projects"
+        ],
+        "columns": {
+          "name": "projects.name",
+          "description": "projects.description"
+        },
+        "getCount": true
+      }
+    },
+    {
+      "isAsync": true,
+      "name": "pusharray",
+      "type": "script",
+      "actionDef": "function(pageContext){ if( typeof pageContext.names !== 'undefined'){ pageContext.names.map(itr => { pageContext.names.push({'name': abc})})}}"
+    },
+     {
+      "isAsync": true,
+      "name": "loadArray",
+      "type": "script",
+      "actionDef": "function(pageContext){pageContext.arr=['abc'];}"
+    },
+    {
+      "isAsync": true,
+      "name": "pushArray",
+      "type": "script",
+      "actionDef": "function(pageContext){ pageContext.arr.push(pageContext.name);}"
+    },
+    
+    {
+      "name": "closeModal1",
+      "type": "closeModal"
+    },
+    {
+      "name": "clearPageContext",
+      "type": "clearPageContext"
+    },
+    {
+      "name": "closePanel1",
+      "type": "closePanel"
+    },
+    {
+      "name": "refreshDataGrid1",
+      "type": "refreshDataGrid"
+    }
+  ]
+}
