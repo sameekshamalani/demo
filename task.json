@@ -65,6 +65,15 @@
             "type": "textarea",
             "value": "@pageContext.arr1"
           
+          },
+          {
+            
+            "id": "age",
+            "label": "Age List",
+            "placeholder": "Age list",
+            "type": "textarea",
+            "value": "@pageContext.age"
+          
           }
           
         ],
