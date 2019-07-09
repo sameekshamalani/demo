@@ -56,6 +56,15 @@
             "type": "textarea",
             "value": "@pageContext.arr"
           
+          },
+          {
+            
+            "id": "surname",
+            "label": "SurName List",
+            "placeholder": "surname list",
+            "type": "textarea",
+            "value": "@pageContext.arr1"
+          
           }
           
         ],
